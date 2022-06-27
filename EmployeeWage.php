@@ -2,22 +2,17 @@
 // UC1 : Program for Employee Attendence 
  //Check Employee Present or not
  
-       echo "**********Welcome to Employee Wage Computation Problem************";
+       echo "**********Welcome to Employee Wage Computation Problem************\n";
 
-class EmployeeWage
-{
-
-    function Attendance()//function to check employee is present or not
-    {
-        $empCheck = rand(0, 1);//function to generate random number 0 or 1 for Attendance
-        if ($empCheck == 1) {
-            echo "\nEmployee is present";
+         $IS_PRESENT = 1;
+        
+        $Num = rand(0, 1);//function to generate random number 0 or 1 for Attendance
+        if ($Num == $IS_PRESENT ) {
+            echo "Employee is present\n";
+            
         } else {
-            echo "\nEmployee is absent";
+            echo "Employee is absent\n";
+            
         }
-    }
-}
-//creating object of class
-$empWage = new EmployeeWage();
-$empWage->Attendance();
+    
 ?>

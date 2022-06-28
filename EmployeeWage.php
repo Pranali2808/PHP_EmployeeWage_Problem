@@ -41,22 +41,5 @@ $TOTAL_WORKING_DAY = 1;
 echo "Employee Monthly Wage is : $EmpMonthlyWage \n";
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ?>
 

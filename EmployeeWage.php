@@ -7,11 +7,11 @@
 
        $EMPWAGE_PER_HOUR = 20;
        $EMP_HOURS;
-       $WORKING_DAYS_PER_MONTH = 20;
-       $WORKING_DAYS = 1;
+       $MAX_WORKING_DAYS_PER_MONTH = 20;
+       $TOTAL_WORKING_DAYS = 0;
        $EMP_MONTHLYWAGE = 0;
         
-       while($WORKING_DAYS <= $WORKING_DAYS_PER_MONTH){
+       while($TOTAL_WORKING_DAYS <= $MAX_WORKING_DAYS_PER_MONTH){
        $Num = rand(0, 2);//function to generate random number 0 or 2 for Attendance
        switch($Num){
         case 0 :
@@ -27,7 +27,7 @@
             $EMP_HOURS = 0;
             break;
         }
-        $WORKING_DAYS++;
+        $TOTAL_WORKING_DAYS++;
        $EmpDailyWage = $EMP_HOURS * $EMPWAGE_PER_HOUR;
        $EMP_MONTHLYWAGE += $EmpDailyWage;
     }

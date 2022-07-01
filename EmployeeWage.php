@@ -10,38 +10,38 @@ class EmployeeWage
 {
 
 public $EMP_HOURS;
-public $TOTAL_EMP_HOURS = 0;
-public $EmpMonthlyWage = 0;
-public $TOTAL_WORKING_DAY = 0;
+public $IS_ABSENT = 0;
+public $IS_FULLTIME = 1;
+public $IS_PARTTIME = 2;
  
-          function EmpWageMonthly($Company_Name, $MAX_WORKING_HOURS_PER_MONTH,$MAX_WORKING_DAY_PER_MONTH,$EMPWAGE_PER_HOUR)
+          public function EmpWageMonthly($Company_Name, $MAX_WORKING_HOURS_PER_MONTH,$MAX_WORKING_DAY_PER_MONTH,$EMPWAGE_PER_HOUR)
           {
-          while($this->TOTAL_WORKING_DAY <= $MAX_WORKING_DAY_PER_MONTH && $this->TOTAL_EMP_HOURS <= $MAX_WORKING_HOURS_PER_MONTH)
+               $TOTAL_EMP_HOURS = 0;
+                $EmpMonthlyWage = 0;
+                $TOTAL_WORKING_DAY = 0;  
+          while($TOTAL_WORKING_DAY <= $MAX_WORKING_DAY_PER_MONTH && $TOTAL_EMP_HOURS <= $MAX_WORKING_HOURS_PER_MONTH)
           {
 
             $Num = rand(0, 2);//function to generate random number 0 or 2 for Attendance
              switch($Num){
-      case 0 :
-             //echo "Employee full time present";
+      case  $this->IS_FULLTIME :
              $EMP_HOURS = 8;
              break;
-      case 1 :
-            // echo "Employee Part time present";
+      case  $this->IS_PARTTIME :
              $EMP_HOURS = 4;
              break;
+
       default :
-            //echo "Employee is absent";
              $EMP_HOURS = 0;
-              break;
-            }
-            $this->TOTAL_WORKING_DAY ++ ;
-            $this->TOTAL_EMP_HOURS += $EMP_HOURS;
+        }
+            $TOTAL_WORKING_DAY ++ ;
+            $TOTAL_EMP_HOURS += $EMP_HOURS;
     
          $EmpDailyWage = $EMP_HOURS * $EMPWAGE_PER_HOUR;
 
-          $this->EmpMonthlyWage += $EmpDailyWage;
+          $EmpMonthlyWage += $EmpDailyWage;
           }
-          echo "Employee Monthly Wage for $Company_Name is : $this->EmpMonthlyWage \n";
+          echo "Employee Monthly Wage for $Company_Name is : $EmpMonthlyWage \n";
        }
 }
 

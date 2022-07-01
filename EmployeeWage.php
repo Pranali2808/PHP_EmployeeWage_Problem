@@ -3,52 +3,60 @@
 You can Create EmpWageBuilder for each Company
 Use Instance Variable instead of function parameters */
 echo "**********Welcome to Employee Wage Computation Problem************\n";
-class EmployeeWageBuilder{
-   
-    public $MAX_WORKING_HOURS_PER_MONTH = 100;
-    public $MAX_WORKING_DAY_PER_MONTH = 20;
-    public $EMPWAGE_PER_HOUR = 20;
-    public $EMP_HOURS;
-    public $TOTAL_EMP_HOURS = 0;
-    public $EmpMonthlyWage = 0;
-    public $TOTAL_WORKING_DAY = 0;
 
-    public function __construct($Company_Name,$MAX_WORKING_HOURS_PER_MONTH,$MAX_WORKING_DAY_PER_MONTH,$EMPWAGE_PER_HOUR)
-{
-    $this->Company_Name = $Company_Name;
-    $this->MAX_WORKING_HOURS_PER_MONTH = $MAX_WORKING_HOURS_PER_MONTH;
-    $this->MAX_WORKING_DAY_PER_MONTH = $MAX_WORKING_DAY_PER_MONTH;
-    $this->EMPWAGE_PER_HOUR = $EMPWAGE_PER_HOUR;
+class EmployeeWage{
+        public $EMP_HOURS;
+        public $IS_FULLTIME = 1;
+        public $IS_PARTTIME = 2;
 
+     public function EmployeeHours(){
+             $Num = rand(0, 2);//function to generate random number 0 or 2 for Attendance
+                 switch($Num){
+                       case 1 :
+                              $this->EMP_HOURS = 8;
+                              break;
+                       case 2 :
+                              $this->EMP_HOURS = 4;
+                              break;
+                      default :
+                              $this->EMP_HOURS = 0;
+
+                           }
+                            return $this->EMP_HOURS;
+
+        }
 }
-function EmpWageMonthly()
-{
-while($this->TOTAL_WORKING_DAY <= $this->MAX_WORKING_DAY_PER_MONTH && $this->TOTAL_EMP_HOURS <= $this->MAX_WORKING_HOURS_PER_MONTH)
-{
+class EmployeeWageBuilder extends EmployeeWage{
+     public $Company_Name;
+     public $MAX_WORKING_HOURS_PER_MONTH;
+     public $MAX_WORKING_DAY_PER_MONTH;
+     public $EMPWAGE_PER_HOUR;
+     
+     public function __construct($Company_Name,$MAX_WORKING_HOURS_PER_MONTH,$MAX_WORKING_DAY_PER_MONTH,$EMPWAGE_PER_HOUR)
+     {
+         $this->Company_Name = $Company_Name;
+         $this->MAX_WORKING_HOURS_PER_MONTH = $MAX_WORKING_HOURS_PER_MONTH;
+         $this->MAX_WORKING_DAY_PER_MONTH = $MAX_WORKING_DAY_PER_MONTH;
+         $this->EMPWAGE_PER_HOUR = $EMPWAGE_PER_HOUR;
+     }
+     
+     public function EmpWageMonthly()
+     {
+          $TOTAL_EMP_HOURS = 0;
+          $EmpMonthlyWage = 0;
+         $TOTAL_WORKING_DAY = 0;
+         $employee = new EmployeeWage();
+while($TOTAL_WORKING_DAY <= $this->MAX_WORKING_DAY_PER_MONTH && $TOTAL_EMP_HOURS <= $this->MAX_WORKING_HOURS_PER_MONTH)
+    {
 
-  $Num = rand(0, 2);//function to generate random number 0 or 2 for Attendance
-   switch($Num){
-case 0 :
-   //echo "Employee full time present";
-   $EMP_HOURS = 8;
-   break;
-case 1 :
-  // echo "Employee Part time present";
-   $EMP_HOURS = 4;
-   break;
-default :
-  //echo "Employee is absent";
-   $EMP_HOURS = 0;
-    break;
-  }
-  $this->TOTAL_WORKING_DAY ++ ;
-  $this->TOTAL_EMP_HOURS += $EMP_HOURS;
+       $EMP_HOURS = $employee->EmployeeHours();
+       $TOTAL_EMP_HOURS += $this->EMP_HOURS;
+       $TOTAL_WORKING_DAY ++ ;
+       $EmpDailyWage = $EMP_HOURS * $this->EMPWAGE_PER_HOUR;
 
-$EmpDailyWage = $EMP_HOURS * $this->EMPWAGE_PER_HOUR;
-
-$this->EmpMonthlyWage += $EmpDailyWage;
-}
-echo "Employee Monthly Wage for $this->Company_Name is : $this->EmpMonthlyWage \n";
+         $EmpMonthlyWage += $EmpDailyWage;
+    }
+echo "Employee Monthly Wage for $this->Company_Name is : $EmpMonthlyWage \n";
 }
 }
 

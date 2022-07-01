@@ -1,5 +1,5 @@
 <?php
-/*UC9 : Ability to save the Total Wage for Each Company 
+/*UC10 : manage employeewage for multiple companies using array
 You can Create EmpWageBuilder for each Company
 Use Instance Variable instead of function parameters */
 echo "**********Welcome to Employee Wage Computation Problem************\n";
@@ -60,12 +60,14 @@ echo "Employee Monthly Wage for $this->Company_Name is : $EmpMonthlyWage \n";
 }
 }
 
+$C1 = new EmployeeWageBuilder("BMW",80,23,30);
+$C2 = new EmployeeWageBuilder("TATA",85,25,25);
+$C3 = new EmployeeWageBuilder("BIRLA",90,22,35);
+$company = [$C1,$C2,$C3];
+for($i = 0; $i < count($company); $i++)
+{
+  echo $company[$i]->EmpWageMonthly();
+}
 
-$EmpWage = new EmployeeWageBuilder("BMW",80,23,30);
-$EmpWage->EmpWageMonthly();
-$EmpWage = new EmployeeWageBuilder("TATA",85,25,25);
-$EmpWage->EmpWageMonthly();
-$EmpWage = new EmployeeWageBuilder("BIRLA",90,22,35);
-$EmpWage->EmpWageMonthly();
 ?>
 
